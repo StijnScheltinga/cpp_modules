@@ -11,6 +11,16 @@ Fixed::~Fixed()
     std::cout << "Deonstructor called" << std::endl;
 }
 
+Fixed::Fixed( const int value )
+{
+    this->value = value + ((2 ^ n_fractional_bits) - 1);
+}
+
+Fixed::Fixed( const float value )
+{
+    
+}
+
 Fixed::Fixed(const Fixed& old_obj)
 {
     std::cout << "Copy constructor called" << std::endl;

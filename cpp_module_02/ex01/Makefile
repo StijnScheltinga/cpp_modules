@@ -1,4 +1,4 @@
-SOURCES     := main.cpp Fixed.cpp
+SOURCES     := main.cpp
 
 OBJECTS     := $(SOURCES:.cpp=.o)
 
