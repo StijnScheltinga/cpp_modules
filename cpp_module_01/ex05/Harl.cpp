@@ -1,6 +1,3 @@
-#ifndef HARL_H
-# define HARL_H
-
 #include "Harl.hpp"
 
 Harl::Harl()
@@ -44,5 +41,3 @@ void    Harl::complain( std::string level )
         }
 
 }
-
-#endif

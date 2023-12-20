@@ -8,8 +8,8 @@ int main(void)
 	std::string&	stringREF = str;
 
 	std::cout << "memaddress string: " << &str << std::endl;
-	std::cout << "memaddress PTR: " << stringPTR << std::endl;
-	std::cout << "memaddress REF: " << &stringREF << std::endl;
+	std::cout << "memaddress stringPTR: " << stringPTR << std::endl;
+	std::cout << "memaddress stringREF: " << &stringREF << std::endl;
 
 	std::cout << "value string: " << str << std::endl;
 	std::cout << "value stringPTR: " << *stringPTR << std::endl;

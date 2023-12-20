@@ -9,5 +9,5 @@ int main(void)
     Zombie* ptr = newZombie("remco");
     ptr->announce();
     delete ptr;
-    randomChump("VwCaddy");
+    randomChump("wessel");
 }

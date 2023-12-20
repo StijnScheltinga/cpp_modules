@@ -18,7 +18,7 @@ $(NAME): $(OBJECTS)
 
 $(TEST_FILE):
 	touch $(TEST_FILE)
-	echo "this is a sentence used for testing\nlalalalalala" > $(TEST_FILE)
+	echo "this is a sentence used for testingtesting\nlalalalalala" > $(TEST_FILE)
 
 test: all $(TEST_FILE)
 	./replace test.txt testing something
