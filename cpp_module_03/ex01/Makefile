@@ -1,8 +1,8 @@
-SOURCES     := main.cpp ClapTrap.cpp
+SOURCES     := main.cpp ClapTrap.cpp ScavTrap.cpp
 
 OBJECTS     := $(SOURCES:.cpp=.o)
 
-NAME        := Claptrap
+NAME        := ScavTrap
 
 all: $(NAME)
 

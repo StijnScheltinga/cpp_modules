@@ -13,7 +13,7 @@ class ClapTrap
         ClapTrap( const std::string& name );
         ~ClapTrap();
         ClapTrap( const ClapTrap& old_obj );
-        void    operator=( const ClapTrap& old_obj );
+        ClapTrap&    operator=( const ClapTrap& old_obj );
 		void 	attack(const std::string& target);
 		void 	takeDamage(unsigned int amount);
 		void	beRepaired(unsigned int amount);

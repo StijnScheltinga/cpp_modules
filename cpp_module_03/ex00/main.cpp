@@ -7,8 +7,8 @@ int main(void)
 
     random2 = random;
 
-    // for (int i = 0; i < 11; i++)
-    //     random.attack("remco");
+    for (int i = 0; i < 11; i++)
+        random.attack("remco");
     random.beRepaired(4);
     random.takeDamage(5);
 }

@@ -24,13 +24,17 @@ ClapTrap::ClapTrap( const ClapTrap& old_obj )
     std::cout << "ClapTrap copy constructor called." << std::endl;
 }
 
-void    ClapTrap::operator=( const ClapTrap& old_obj )
+ClapTrap&    ClapTrap::operator=( const ClapTrap& old_obj )
 {
-    this->attackDamage = old_obj.attackDamage;
-    this->energyPoints = old_obj.energyPoints;
-    this->hitPoints = old_obj.hitPoints;
-    this->name = old_obj.name;
+    if (this != &old_obj)
+    {
+        this->attackDamage = old_obj.attackDamage;
+        this->energyPoints = old_obj.energyPoints;
+        this->hitPoints = old_obj.hitPoints;
+        this->name = old_obj.name;
+    }
     std::cout << "ClapTrap assignment operator called." << std::endl;
+    return (*this);
 }
 
 void 	ClapTrap::attack(const std::string& target)
