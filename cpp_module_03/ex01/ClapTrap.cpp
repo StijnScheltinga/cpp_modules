@@ -7,7 +7,7 @@ ClapTrap::ClapTrap( const std::string& name ): name(name), hitPoints(10), energy
 
 ClapTrap::~ClapTrap()
 {
-    std::cout << "destructor " << name << " called" << std::endl;
+    std::cout << "ClapTrap destructor " << name << " called" << std::endl;
 }
 
 ClapTrap::ClapTrap( const ClapTrap& old_obj )
@@ -28,7 +28,7 @@ ClapTrap&    ClapTrap::operator=( const ClapTrap& old_obj )
         this->hitPoints = old_obj.hitPoints;
         this->name = old_obj.name;
     }
-    std::cout << "ClapTrap assignment operator called." << std::endl;
+    std::cout << "ClapTrap copy assignment operator called." << std::endl;
     return (*this);
 }
 
