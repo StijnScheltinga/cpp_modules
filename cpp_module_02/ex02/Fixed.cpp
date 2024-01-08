@@ -3,49 +3,40 @@
 
 Fixed::Fixed()
 {
-    std::cout << "Default constructor called" << std::endl;
     this->value = 0;
 }
 
 Fixed::~Fixed()
 {
-    std::cout << "Deonstructor called" << std::endl;
 }
 
 Fixed::Fixed( const int value )
 {
-    std::cout << "Int constructor called" << std::endl;
     this->value = value << n_fractional_bits;
 }
 
 Fixed::Fixed( const float value )
 {
-    std::cout << "Float constructor called" << std::endl;
     this->value = roundf(value * (1 << n_fractional_bits));
-	std::cout << "Int value: " << this->value << std::endl;
 }
 
 Fixed::Fixed(const Fixed& old_obj)
 {
-    std::cout << "Copy constructor called" << std::endl;
     this->value = old_obj.getRawBits();
 }
 
 void Fixed::operator=(const Fixed& old_obj)
 {
-    std::cout << "Copy assignment overloader called" << std::endl;
     this->value = old_obj.getRawBits();
 }
 
 int Fixed::getRawBits( void ) const
 {
-    std::cout << "getRawBits member function called" << std::endl;
     return (value);
 }
 
 void    Fixed::setRawBits( int const raw )
 {
-    std::cout << "setRawBits member function called" << std::endl;
     this->value = raw;
 }
 
@@ -67,51 +58,114 @@ std::ostream& operator<<(std::ostream& os, const Fixed& fixed)
 
 bool Fixed::operator>( const Fixed& other ) const
 {
-    return value > other.value;
+    return value > other.getRawBits();
 }
 
 bool Fixed::operator<( const Fixed& other ) const
 {
-    return value < other.value;
+    return value < other.getRawBits();
 }
 
 bool Fixed::operator<=( const Fixed& other ) const
 {
-    return value <= other.value;
+    return value <= other.getRawBits();
 }
 
 bool Fixed::operator>=( const Fixed& other ) const
 {
-    return value >= other.value;
+    return value >= other.getRawBits();
 }
 
 bool	Fixed::operator==( const Fixed& other ) const
 {
-	return value == other.value;
+	return value == other.getRawBits();
 }
 
 bool	Fixed::operator!=( const Fixed& other ) const
 {
-	return value != other.value;
+	return value != other.getRawBits();
 }
 
 float	Fixed::operator+( const Fixed& other ) const
 {
-	return value + other.value;
+	return this->toFloat() + other.toFloat();
 }
 
 float	Fixed::operator-( const Fixed& other ) const
 {
-	return value - other.value;
+	return this->toFloat() - other.toFloat();
 }
 
 float	Fixed::operator*( const Fixed& other ) const
 {
-	return value * other.value;
+	return this->toFloat() * other.toFloat();
 }
 
 float	Fixed::operator/( const Fixed& other ) const
 {
-	std::cout << "Divide operator called" << std::endl;
-	return value / other.value;
+	return this->toFloat() / other.toFloat();
+}
+
+//pre increment
+Fixed&  Fixed::operator++(void)
+{
+    value++;
+    return (*this);
+}
+
+Fixed&  Fixed::operator--(void)
+{
+    value--;
+    return (*this);
+}
+
+//post increment, dummy int
+Fixed  Fixed::operator++(int)
+{
+    Fixed   temp;
+
+    temp = *this;
+    value++;
+    return (temp);
+}
+
+Fixed  Fixed::operator--(int)
+{
+    Fixed   temp;
+
+    temp = *this;
+    value--;
+    return (temp);
+}
+
+Fixed&   Fixed::max(Fixed& a, Fixed& b)
+{
+    if (a > b)
+        return (a);
+    else
+        return (b);
+}
+
+Fixed&   Fixed::min(Fixed& a, Fixed& b)
+{
+    if (a < b)
+        return (a);
+    else
+        return (b);
+}
+
+const Fixed&   Fixed::max(const Fixed& a, const Fixed& b)
+{
+    if (a > b)
+        return (a);
+    else 
+        return (b);
+}
+
+const Fixed&   Fixed::min(const Fixed& a, const Fixed& b)
+{
+    if (a < b)
+        return (a);
+    else 
+        return (b);
 }

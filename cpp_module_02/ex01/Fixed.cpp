@@ -9,7 +9,7 @@ Fixed::Fixed()
 
 Fixed::~Fixed()
 {
-    std::cout << "Deonstructor called" << std::endl;
+    std::cout << "Destructor called" << std::endl;
 }
 
 Fixed::Fixed( const int value )
@@ -34,7 +34,7 @@ Fixed& Fixed::operator=(const Fixed& old_obj)
 {
     if (this != &old_obj)
     {
-        std::cout << "Copy assignment overloader called" << std::endl;
+        std::cout << "Copy assignment operator called" << std::endl;
         this->value = old_obj.getRawBits();
     }
     return (*this);
