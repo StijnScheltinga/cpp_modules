@@ -30,10 +30,14 @@ Fixed::Fixed(const Fixed& old_obj)
     this->value = old_obj.getRawBits();
 }
 
-void Fixed::operator=(const Fixed& old_obj)
+Fixed& Fixed::operator=(const Fixed& old_obj)
 {
-    std::cout << "Copy assignment overloader called" << std::endl;
-    this->value = old_obj.getRawBits();
+    if (this != &old_obj)
+    {
+        std::cout << "Copy assignment overloader called" << std::endl;
+        this->value = old_obj.getRawBits();
+    }
+    return (*this);
 }
 
 int Fixed::getRawBits( void ) const
