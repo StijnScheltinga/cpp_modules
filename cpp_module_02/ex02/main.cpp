@@ -19,7 +19,7 @@ void    exampleSubject(void)
 
 int main(void)
 {
-    Fixed   a(6.234f);
+    Fixed   a(6.12435f);
     Fixed   b(10);
 
     std::cout << "a = " << a.toFloat() << std::endl;
@@ -41,8 +41,8 @@ int main(void)
     std::cout << "a - b is equal to: " << a - b << std::endl;
     std::cout << "a * b is equal to: " << a * b << std::endl;
     std::cout << "a / b is equal to: " << a / b << std::endl;
-    std::cout << "max of a and b is" << Fixed::max(a, b) << std::endl;
-    std::cout << "min of a and b is" << Fixed::min(a, b) << std::endl;
+    std::cout << "max of a and b is " << Fixed::max(a, b) << std::endl;
+    std::cout << "min of a and b is " << Fixed::min(a, b) << std::endl;
 
     const Fixed a_const(6.234f);
     const Fixed b_const(10);

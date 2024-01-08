@@ -166,6 +166,6 @@ const Fixed&   Fixed::min(const Fixed& a, const Fixed& b)
 {
     if (a < b)
         return (a);
-    else 
+    else
         return (b);
 }
