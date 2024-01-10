@@ -3,12 +3,16 @@
 int main(void)
 {
     ClapTrap random("wessel");
-    ClapTrap random2;
-
-    random2 = random;
+    ClapTrap random2(random);
 
     for (int i = 0; i < 11; i++)
         random.attack("remco");
     random.beRepaired(4);
     random.takeDamage(5);
+
+    std::cout << std::endl;
+
+    random2.takeDamage(5);
+    random2.beRepaired(4);
+    random2.takeDamage(100);
 }
