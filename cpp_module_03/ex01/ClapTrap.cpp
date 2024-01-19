@@ -28,15 +28,17 @@ ClapTrap&    ClapTrap::operator=( const ClapTrap& old_obj )
         this->hitPoints = old_obj.hitPoints;
         this->name = old_obj.name;
     }
-    std::cout << "ClapTrap copy assignment operator called." << std::endl;
+    std::cout << "ClapTrap assignment operator called." << std::endl;
     return (*this);
 }
 
 void 	ClapTrap::attack(const std::string& target)
 {
-    if (energyPoints > 0)
+    if (hitPoints <= 0)
+        std::cout << "ClapTrap " << name << " can't attack he is dead" << std::endl;
+    else if (energyPoints > 0)
     {
-        std::cout << "ClapTrap " << name <<  " attacks " << target << " , causing " << attackDamage <<  " points of damage!" << std::endl;
+        std::cout << "ClapTrap " << name <<  " attacks " << target << ", causing " << attackDamage <<  " points of damage and costing 1 energy point" << std::endl;
         energyPoints--;
     }
     else
@@ -45,19 +47,34 @@ void 	ClapTrap::attack(const std::string& target)
 
 void 	ClapTrap::takeDamage(unsigned int amount)
 {
+    if (hitPoints <= 0)
+    {
+        std::cout << "ClapTrap " << name << " can't take damage, he is already dead" << std::endl;
+        return;
+    }
     hitPoints = hitPoints - amount;
-    std::cout << "ClapTrap " << name << " took " << amount << " points of damage." << std::endl;
+    if (hitPoints > 0)
+        std::cout << "ClapTrap " << name << " took " << amount << " points of damage. He has " << hitPoints << "HP left." << std::endl;
+    else
+        std::cout << "ClapTrap " << name << " took " << amount << " points of damage. He has died." << std::endl;
 }
 
 void    ClapTrap::beRepaired(unsigned int amount)
 {
-    if (energyPoints > 0)
+    if (hitPoints <= 0)
+        std::cout << "ClapTrap " << name << " can't be repaired he is dead" << std::endl;
+    else if (energyPoints > 0)
     {
-        hitPoints = hitPoints + amount;
+        hitPoints += amount;
         std::cout << "Claptrap " << name << " repairs himself with " << amount << " points costing 1 energy point" << std::endl;
         energyPoints--;
-        std::cout << "Total energy points: " << energyPoints << std::endl;
     }
     else
         std::cout << "ClapTrap " << name << " has insufficient energy points to be repaired." << std::endl;
+}
+
+void    ClapTrap::displayStats(void)
+{
+    std::cout << "ClapTrap " << name << ": hitPoints: " << hitPoints
+        << ", energyPoints: " << energyPoints << ", attackDamage: " << attackDamage << std::endl;
 }

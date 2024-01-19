@@ -1,3 +1,6 @@
+#ifndef CLAPTRAP_H
+# define CLAPTRAP_H
+
 #include <string>
 #include <iostream>
 
@@ -18,3 +21,5 @@ class ClapTrap
 		void	beRepaired(unsigned int amount);
         void    displayStats(void);
 };
+
+#endif
