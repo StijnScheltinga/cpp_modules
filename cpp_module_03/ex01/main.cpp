@@ -16,4 +16,5 @@ int main(void)
     b.attack("random");
     c.attack("random");
     d.attack("random");
+    c.beRepaired(10);
 }
