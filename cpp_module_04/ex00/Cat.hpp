@@ -5,8 +5,13 @@
 # include <string>
 # include <iostream>
 
-class Cat: protected Animal
+class Cat: public Animal
 {
+    public:
+        Cat();
+        ~Cat();
+        Cat(const Cat& other);
+        Cat& operator=(const Cat other);
 };
 
 #endif

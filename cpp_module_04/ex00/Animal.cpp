@@ -24,3 +24,8 @@ Animal::~Animal()
 {
     std::cout << "Animal destructor called" << std::endl;
 }
+
+std::string Animal::getType(void)
+{
+    return (this->type);
+}

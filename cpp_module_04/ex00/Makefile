@@ -1,4 +1,4 @@
-SOURCES     := main.cpp Animal.cpp
+SOURCES     := main.cpp Animal.cpp Cat.cpp Dog.cpp
 BUILD		:= build
 OBJECTS     := $(addprefix $(BUILD)/, $(SOURCES:.cpp=.o))
 NAME        := Animal
