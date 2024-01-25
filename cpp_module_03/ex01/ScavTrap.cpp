@@ -28,18 +28,12 @@ ScavTrap::~ScavTrap()
     std::cout << "ScavTrap " << name << " deconstructor called" << std::endl;
 }
 
-void    ScavTrap::attack(const std::string& target)
-{
-    if (energyPoints > 0)
-    {
-        std::cout << "ScavTrap " << name <<  " attacks " << target << " , causing " << attackDamage <<  " points of damage!" << std::endl;
-        energyPoints--;
-    }
-    else
-        std::cout << "ScavTrap " << name << " has insufficient energy points to attack " << target << std::endl;
-}
-
 void    ScavTrap::guardGate(void)
 {
-    std::cout << "ScavTrap " << name << " is now in gate keeper mode." << std::endl;
+    std::cout << getClass() << name << " is now in gate keeper mode." << std::endl;
+}
+
+std::string    ScavTrap::getClass(void)
+{
+    return ("ScavTrap ");
 }
