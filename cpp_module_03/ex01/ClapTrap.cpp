@@ -35,46 +35,51 @@ ClapTrap&    ClapTrap::operator=( const ClapTrap& old_obj )
 void 	ClapTrap::attack(const std::string& target)
 {
     if (hitPoints <= 0)
-        std::cout << "ClapTrap " << name << " can't attack he is dead" << std::endl;
+        std::cout << getClass() << name << " can't attack he is dead" << std::endl;
     else if (energyPoints > 0)
     {
-        std::cout << "ClapTrap " << name <<  " attacks " << target << ", causing " << attackDamage <<  " points of damage and costing 1 energy point" << std::endl;
+        std::cout << getClass() << name <<  " attacks " << target << ", causing " << attackDamage <<  " points of damage and costing 1 energy point" << std::endl;
         energyPoints--;
     }
     else
-        std::cout << "ClapTrap " << name << " has insufficient energy points to attack " << target << std::endl;
+        std::cout << getClass() << name << " has insufficient energy points to attack " << target << std::endl;
 }
 
 void 	ClapTrap::takeDamage(unsigned int amount)
 {
     if (hitPoints <= 0)
     {
-        std::cout << "ClapTrap " << name << " can't take damage, he is already dead" << std::endl;
+        std::cout << getClass() << name << " can't take damage, he is already dead" << std::endl;
         return;
     }
     hitPoints = hitPoints - amount;
     if (hitPoints > 0)
-        std::cout << "ClapTrap " << name << " took " << amount << " points of damage. He has " << hitPoints << "HP left." << std::endl;
+        std::cout << getClass() << name << " took " << amount << " points of damage. He has " << hitPoints << "HP left." << std::endl;
     else
-        std::cout << "ClapTrap " << name << " took " << amount << " points of damage. He has died." << std::endl;
+        std::cout << getClass() << name << " took " << amount << " points of damage. He has died." << std::endl;
 }
 
 void    ClapTrap::beRepaired(unsigned int amount)
 {
     if (hitPoints <= 0)
-        std::cout << "ClapTrap " << name << " can't be repaired he is dead" << std::endl;
+        std::cout << getClass() << name << " can't be repaired he is dead" << std::endl;
     else if (energyPoints > 0)
     {
         hitPoints += amount;
-        std::cout << "Claptrap " << name << " repairs himself with " << amount << " points costing 1 energy point" << std::endl;
+        std::cout << getClass() << name << " repairs himself with " << amount << " points costing 1 energy point" << std::endl;
         energyPoints--;
     }
     else
-        std::cout << "ClapTrap " << name << " has insufficient energy points to be repaired." << std::endl;
+        std::cout << getClass() << name << " has insufficient energy points to be repaired." << std::endl;
 }
 
 void    ClapTrap::displayStats(void)
 {
-    std::cout << "ClapTrap " << name << ": hitPoints: " << hitPoints
+    std::cout << getClass() << name << ": hitPoints: " << hitPoints
         << ", energyPoints: " << energyPoints << ", attackDamage: " << attackDamage << std::endl;
+}
+
+std::string ClapTrap::getClass(void)
+{
+    return ("ClapTrap ");
 }
