@@ -3,7 +3,7 @@
 FragTrap::FragTrap(const std::string& name) : ClapTrap(name)
 {
     this->hitPoints = 100;
-    this->energyPoints = 50;
+    this->energyPoints = 100;
     this->attackDamage = 30;
     std::cout << "A FragTrap named " << name << " has been created." << std::endl;
 }
@@ -28,18 +28,12 @@ FragTrap::~FragTrap()
     std::cout << "FragTrap " << name << " deconstructor called" << std::endl;
 }
 
-void    FragTrap::attack(const std::string& target)
-{
-    if (energyPoints > 0)
-    {
-        std::cout << "FragTrap " << name <<  " attacks " << target << " , causing " << attackDamage <<  " points of damage!" << std::endl;
-        energyPoints--;
-    }
-    else
-        std::cout << "FragTrap " << name << " has insufficient energy points to attack " << target << std::endl;
-}
-
 void    FragTrap::highFivesGuys(void)
 {
-    std::cout << "Fragtrap " << name << " wants to high five" << std::endl;
+    std::cout << getClass() << name << " wants to high five!" << std::endl;
+}
+
+std::string    FragTrap::getClass(void)
+{
+    return ("FragTrap ");
 }

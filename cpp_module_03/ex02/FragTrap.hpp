@@ -1,7 +1,7 @@
-#ifndef FRAGTRAP_HPP
-# define FRAGTRAP_HPP
+#ifndef FRAGTRAP_H
+# define FRAGTRAP_H
 
-# include "ClapTrap.hpp"
+#include "ClapTrap.hpp"
 
 class FragTrap : public ClapTrap
 {
@@ -11,8 +11,8 @@ class FragTrap : public ClapTrap
         FragTrap& operator=(const FragTrap& other);
         ~FragTrap();
 
-        void    attack(const std::string& target);
         void    highFivesGuys(void);
+        std::string getClass(void);
 };
 
 #endif
