@@ -7,15 +7,20 @@
 
 int main(void)
 {
-    const Dog* a = new Dog();
-    const Dog* b = new Dog();
+    int num = 4;
+    const Animal* a[num];
 
-    a->makeSound();
-    b->makeSound();
-
-
-    delete a;
-    delete b;    
+    for (int i = 0; i != num; i++)
+    {
+        if (i % 2 == 0)
+            a[i] = new Dog();
+        else
+            a[i] = new Cat();
+        std::cout << std::endl;
+    }
+    
+    for (int i = 0; i != num; i++)
+        delete a[i];
 
     return (0);
 }
