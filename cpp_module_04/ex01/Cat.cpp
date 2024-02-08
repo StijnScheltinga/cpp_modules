@@ -19,7 +19,7 @@ Cat& Cat::operator=(const Cat& other)
     if (this != &other)
     {
         Animal::operator=(other);
-        this->_Brain = other._Brain;
+        *(this->_Brain) = *(other._Brain);
     }
     return (*this);
 }
@@ -33,4 +33,9 @@ Cat::~Cat()
 void    Cat::makeSound(void) const
 {
     std::cout << "Meow!" << std::endl;
+}
+
+void    Cat::printThought(void) const
+{
+    this->_Brain->printThought();
 }

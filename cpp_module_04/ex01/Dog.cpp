@@ -19,7 +19,7 @@ Dog& Dog::operator=(const Dog& other)
     if (this != &other)
     {
         Animal::operator=(other);
-        this->_Brain = other._Brain;
+        *(this->_Brain) = *(other._Brain);
     }
     return (*this);
 }
@@ -34,3 +34,9 @@ void    Dog::makeSound(void) const
 {
     std::cout << "Woof!" << std::endl;
 }
+
+void    Dog::printThought(void) const
+{
+    this->_Brain->printThought();
+}
+

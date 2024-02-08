@@ -12,7 +12,8 @@ class Brain
         Brain();
         ~Brain();
         Brain(const Brain& other);
-        Brain& operator=(const Brain& other);
+        Brain&  operator=(const Brain& other);
+        void    printThought(void) const;
 };
 
 #endif
