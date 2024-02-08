@@ -10,6 +10,7 @@ int main(void)
     const Animal* a = new Dog();
     const Animal* b = new Cat();
     // const Animal* c = new Animal();
+    // Animal d;
 
     delete a;
     delete b;
