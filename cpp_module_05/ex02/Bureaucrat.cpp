@@ -3,9 +3,9 @@
 Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name), _grade(grade)
 {
     if (grade > 150)
-        throw GradeTooLowException();
+        throw Bureaucrat::GradeTooLowException();
     else if (grade < 1)
-        throw GradeTooHighException();
+        throw Bureaucrat::GradeTooHighException();
     std::cout << "Bureaucrat " << name << " created" << std::endl;
 }
 
@@ -16,7 +16,7 @@ Bureaucrat::~Bureaucrat()
 
 Bureaucrat::Bureaucrat(const Bureaucrat& other) : _name(other._name), _grade(other._grade)
 {
-    std::cout << "Bureaucrat " << _name << " created" << std::endl;
+        std::cout << "Bureaucrat " << _name << " created" << std::endl;
 }
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
@@ -27,7 +27,7 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
 }
 
 
-unsigned int Bureaucrat::getGrade(void) const
+int Bureaucrat::getGrade(void) const
 {
     return (this->_grade);
 }
@@ -41,14 +41,28 @@ void    Bureaucrat::incrementGrade(void)
 {
     this->_grade--;
     if (this->_grade < 1)
-        throw GradeTooHighException();
+        throw Bureaucrat::GradeTooHighException();
 }
 
 void    Bureaucrat::decrementGrade(void)
 {
     this->_grade++;
     if (this->_grade > 150)
-        throw GradeTooLowException();
+        throw Bureaucrat::GradeTooLowException();
+}
+
+void    Bureaucrat::signForm(AForm& AForm)
+{
+    try
+    {
+        AForm.beSigned(*this);
+        std::cout << this->getName() << " signed AForm " << AForm.getName() << std::endl;
+    }
+    catch(const AForm::gradeTooLowException& e)
+    {
+        std::cout << this->getName() << " couldn't sign AForm " << AForm.getName() << " because: ";
+        std::cout << e.what() << std::endl;
+    }
 }
 
 const char *Bureaucrat::GradeTooHighException::what(void) const throw()
@@ -63,6 +77,6 @@ const char *Bureaucrat::GradeTooLowException::what(void) const throw()
 
 std::ostream&	operator<<(std::ostream& os, Bureaucrat& Bureau)
 {
-    os << Bureau.getName() << ", Bureaucrat grade: " << Bureau.getGrade();
+    os << Bureau.getName() << ", Bureaucrat grade: " << Bureau.getGrade() << "\n";
     return (os);
 }
