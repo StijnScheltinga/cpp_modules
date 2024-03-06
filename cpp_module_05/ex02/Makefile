@@ -1,4 +1,4 @@
-SOURCES     := main.cpp Bureaucrat.cpp AForm.cpp PresidentialPardonForm.cpp
+SOURCES     := main.cpp Bureaucrat.cpp AForm.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp
 BUILD		:= build
 OBJECTS     := $(addprefix $(BUILD)/, $(SOURCES:.cpp=.o))
 NAME        := Form
