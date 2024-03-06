@@ -28,8 +28,8 @@ class AForm
 
         void    beSigned(const Bureaucrat& bureaucrat);
 
-		void			checkRequirements();
-        virtual void    execute(const Bureaucrat& executor) const = 0;
+        void    		execute(const Bureaucrat& executor) const;
+		virtual void	executeForm(void) const = 0;
 
         class GradeTooHighException : std::exception
         {

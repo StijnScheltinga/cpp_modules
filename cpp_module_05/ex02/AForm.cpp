@@ -65,6 +65,16 @@ void    AForm::beSigned(const Bureaucrat& Bureaucrat)
         throw Bureaucrat::GradeTooLowException();
 }
 
+void	AForm::execute(const Bureaucrat& executor) const
+{
+	if (executor.getGrade() <= getGradeToExecute() && getSigned())
+		executeForm();
+	else if (executor.getGrade() <= getGradeToExecute() && !getSigned())
+		std::cout << "Form must be first be signed before it can be executed." << std::endl;
+	else
+		throw Bureaucrat::GradeTooLowException();
+}
+
 std::ostream& operator<<(std::ostream& os, const AForm& AForm)
 {
     os << "AForm name: " << AForm.getName() << "\n";

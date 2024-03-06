@@ -70,6 +70,7 @@ void	Bureaucrat::executeForm(AForm& form)
 	try
 	{
 		form.execute(*this);
+		std::cout << getName() << " has succesfully executed form " << form.getName() << std::endl;
 	}
 	catch(const Bureaucrat::GradeTooLowException& e)
 	{
