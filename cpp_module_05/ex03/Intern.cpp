@@ -2,10 +2,12 @@
 
 Intern::Intern()
 {
+	std::cout << "Intern created" << std::endl;
 }
 
 Intern::Intern(const Intern& other)
 {
+	(void)other;
 }
 
 Intern::~Intern()
@@ -14,6 +16,8 @@ Intern::~Intern()
 
 Intern&	Intern::operator=(const Intern& other)
 {
+	(void)other;
+	return (*this);
 }
 
 AForm	*Intern::makeForm(const std::string name, const std::string target)
@@ -26,10 +30,10 @@ AForm	*Intern::makeForm(const std::string name, const std::string target)
 
 	AForm *forms[] = {
 		new PresidentialPardonForm(target),
-		new RobotomyRequestForm(target),
+		new	RobotomyRequestForm(target),
 		new ShrubberyCreationForm(target)
 	};
-	
+
 	for (int i = 0; i < 3; i++)
 		if (name == formType[i])
 		{
@@ -37,4 +41,5 @@ AForm	*Intern::makeForm(const std::string name, const std::string target)
 			return (forms[i]);
 		}
 	std::cout << "Intern failed to create a form" << std::endl;
+	return NULL;
 }

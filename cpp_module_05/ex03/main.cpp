@@ -7,9 +7,12 @@
 
 int main()
 {
-	Intern	remco;
-	AForm	*form = PresidentialPardonForm("remco");
+	Bureaucrat	saskia("Saskia", 5);
+	Intern		remco;
+	AForm		*form1 = remco.makeForm("PresidentialPardon", "Wessel");
 
-	form = remco.makeForm("robotomy", "Wessel");
+	saskia.signForm(*form1);
+	saskia.executeForm(*form1);
 
+	delete form1;
 }

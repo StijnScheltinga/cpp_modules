@@ -26,12 +26,14 @@ std::string ShrubberyCreationForm::getTarget(void) const
 
 void    ShrubberyCreationForm::executeForm(void) const
 {
-	std::ofstream	outfile(getTarget() + "_shrubbery.txt");
+	std::string	filename = getTarget() + "_shrubbery.txt";
+	std::ofstream	outfile(filename.c_str());
 	if (!outfile.is_open())
 	{
 		std::cout << "failed to open file" << std::endl;
 		return ;
 	}
+
 	outfile << "      ^" << std::endl;
     outfile << "     / \\" << std::endl;
     outfile << "    /   \\" << std::endl;
@@ -41,5 +43,6 @@ void    ShrubberyCreationForm::executeForm(void) const
 	outfile << "/___________\\" << std::endl;
     outfile << "     |||" << std::endl; 
     outfile << "     |||" << std::endl;
+	
 	outfile.close();
 }
