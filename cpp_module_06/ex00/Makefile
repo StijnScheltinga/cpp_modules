@@ -1,7 +1,7 @@
-SOURCES     := main.cpp
+SOURCES     := main.cpp ScalarConverter.cpp
 BUILD		:= build
 OBJECTS     := $(addprefix $(BUILD)/, $(SOURCES:.cpp=.o))
-NAME        := Form
+NAME        := ScalarConverter
 
 all: $(NAME)
 

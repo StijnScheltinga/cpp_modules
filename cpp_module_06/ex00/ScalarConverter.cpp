@@ -19,7 +19,27 @@ ScalarConverter& ScalarConverter::operator=(const ScalarConverter& other)
     return *this;
 }
 
-static void convert(std::string literal)
+void ScalarConverter::convert(std::string literal)
 {
-    
+    try
+	{
+		char	c = static_cast<char>(stoi(literal));
+		std::cout << "char: " << c << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << e.what() << '\n';
+	}
+	try
+	{
+		int i = stoi(literal);
+		std::cout << "int: " << i << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << e.what() << '\n';
+	}
+
+	
+	
 }
