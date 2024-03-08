@@ -46,6 +46,7 @@ void ScalarConverter::convert(std::string literal)
         }
         case DOUBLE:
         {
+            printDouble(literal);
             break;
         }
         case NONE:
@@ -148,8 +149,33 @@ void    printFloat(std::string literal)
     float f = atof(literal.c_str());
     printChar2(static_cast<int>(f));
     std::cout << "int: " << static_cast<int>(f) << "\n";
-    std::cout << "float: " << f << "\n";
-    std::cout << "double: " << static_cast<double>(f) << "\n";
+        if (static_cast<int>(f) - f == 0)
+    {
+        std::cout << "float: " << f << ".0f\n";
+        std::cout << "double: " << static_cast<double>(f) << ".0\n";
+    }
+    else
+    {
+        std::cout << "float: " << f << "f\n";
+        std::cout << "double: " << static_cast<double>(f) << "\n";
+    }
+}
+
+void    printDouble(std::string literal)
+{
+    double d = std::stod(literal);
+    printChar2(static_cast<int>(d));
+    std::cout << "int: " << static_cast<int>(d) << "\n";
+    if (static_cast<int>(d) - d == 0)
+    {
+        std::cout << "float: " << static_cast<float>(d) << ".0f\n";
+        std::cout << "double: " << d << ".0\n";
+    }
+    else
+    {
+        std::cout << "float: " << static_cast<float>(d) << "f\n";
+        std::cout << "double: " << d << "\n";
+    }
 }
 
 void    printChar2(int i)

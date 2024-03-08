@@ -20,6 +20,7 @@ type    getType(std::string literal);
 void    printChar(std::string literal);
 void    printInt(std::string literal);
 void    printFloat(std::string literal);
+void    printDouble(std::string literal);
 
 void    printChar2(int i);
 
