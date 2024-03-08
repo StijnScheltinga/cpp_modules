@@ -39,7 +39,24 @@ void ScalarConverter::convert(std::string literal)
 	{
 		std::cout << e.what() << '\n';
 	}
-
+	try
+	{
+		float	f = std::stof(literal);
+		std::cout << "float: " << f << "f" << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	try
+	{
+		double	f = std::stod(literal);
+		std::cout << "double: " << f << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
 	
 	
 }
