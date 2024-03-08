@@ -9,7 +9,7 @@ $(NAME): $(OBJECTS)
 	c++ -o $(NAME) $(OBJECTS)
 
 $(BUILD)/%.o: %.cpp | $(BUILD)
-	c++ -std=c++98 -g -Wall -Werror -Wextra -c $< -o $@
+	c++ -g -Wall -Werror -Wextra -c $< -o $@
 
 
 $(BUILD):
