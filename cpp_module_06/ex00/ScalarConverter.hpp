@@ -10,9 +10,12 @@ typedef enum type {
     CHAR,
     INT,
     FLOAT,
-    DOUBLE
+    DOUBLE,
+	WORD
 } type;
 
+int		isWord(std::string literal);
+void	printWord(std::string literal);
 int     isInt(std::string literal);
 int     isDoubleFloat(std::string literal);
 type    getType(std::string literal);

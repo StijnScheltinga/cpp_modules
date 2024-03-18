@@ -49,6 +49,11 @@ void ScalarConverter::convert(std::string literal)
             printDouble(literal);
             break;
         }
+		case WORD:
+		{
+			printWord(literal);
+			break;
+		}
         case NONE:
         {
             std::cout << "impossible" << std::endl;
@@ -82,7 +87,36 @@ type    getType(std::string literal)
         type = DOUBLE;
         std::cout << "type is double" << std::endl;
     }
+	else if (isWord(literal))
+	{
+		type = WORD;
+		std::cout << "type is word" << std::endl;
+	}
     return type;
+}
+
+int	isWord(std::string literal)
+{
+	if (literal == "-inff" || literal == "+inff" || literal == "nanf" 
+		|| literal == "-inf" || literal == "+inf" || literal == "nan")
+			return 1;
+	return 0;
+}
+
+void	printWord(std::string literal)
+{
+	std::cout << "char: impossible" << std::endl;
+	std::cout << "int: impossible" << std::endl;
+	if (literal == "-inff" || literal == "+inff" || literal == "nanf")
+	{
+		std::cout << "float: " << literal << std::endl;
+		std::cout << "double: " << literal.erase(literal.size() - 1) << std::endl;
+	}
+	else
+	{
+		std::cout << "float: " << literal << "f" << std::endl;
+		std::cout << "double: " << literal << std::endl;
+	}
 }
 
 int isInt(std::string literal)
