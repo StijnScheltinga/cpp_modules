@@ -8,7 +8,9 @@ class Data
 	public:
 		Data(int value);
 		~Data();
-		int	getValue(void);
+		Data(const Data& copy);
+		Data& operator=(const Data& copy);
+		int	getValue(void) const;
 };
 
 #endif
