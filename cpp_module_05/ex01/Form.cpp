@@ -16,7 +16,6 @@ Form::Form(const Form& other) : _name(other._name), _gradeToSign(other._gradeToS
 
 Form::~Form()
 {
-
 }
 
 Form&   Form::operator=(const Form& other)

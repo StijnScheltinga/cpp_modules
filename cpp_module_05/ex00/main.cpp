@@ -23,7 +23,7 @@ int main()
     }
     catch(const Bureaucrat::GradeTooHighException& e)
     {
-        std::cerr << e.what() << '\n';
+        std::cout << e.what() << '\n';
     }
     try
     {
@@ -31,7 +31,7 @@ int main()
     }
     catch(const Bureaucrat::GradeTooLowException& e)
     {
-        std::cerr << e.what() << '\n';
+        std::cout << e.what() << '\n';
     }
     try
     {
@@ -39,7 +39,7 @@ int main()
     }
     catch(const Bureaucrat::GradeTooHighException& e)
     {
-        std::cerr << e.what() << '\n';
+        std::cout << e.what() << '\n';
     }
     try
     {
@@ -54,7 +54,7 @@ int main()
     }
     catch(const std::exception& e)
     {
-        std::cerr << e.what() << '\n';
+        std::cout << e.what() << '\n';
     }
     
 }

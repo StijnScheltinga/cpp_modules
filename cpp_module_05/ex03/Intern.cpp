@@ -37,7 +37,7 @@ AForm	*Intern::makeForm(const std::string name, const std::string target)
 	for (int i = 0; i < 3; i++)
 		if (name == formType[i])
 		{
-			std::cout << "Intern created a form" << std::endl;
+			std::cout << "Intern creates " << formType[i] << std::endl;
 			return (forms[i]);
 		}
 	std::cout << "Intern failed to create a form" << std::endl;
