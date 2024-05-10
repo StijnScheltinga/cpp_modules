@@ -4,6 +4,7 @@
 # include <string>
 # include <iostream>
 # include <ctype.h>
+# include <limits.h>
 
 typedef enum type {
     NONE,

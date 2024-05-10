@@ -182,7 +182,10 @@ void    printFloat(std::string literal)
 {
     float f = atof(literal.c_str());
     printChar2(static_cast<int>(f));
-    std::cout << "int: " << static_cast<int>(f) << "\n";
+	if (f > static_cast<float>(INT_MAX) || f < static_cast<float>(INT_MIN)) //if float overlows int
+    	std::cout << "int: impossible" << "\n";
+	else // else cast to int
+		std::cout << "int: " << static_cast<int>(f) << "\n";
         if (static_cast<int>(f) - f == 0)
     {
         std::cout << "float: " << f << ".0f\n";
@@ -199,7 +202,10 @@ void    printDouble(std::string literal)
 {
     double d = std::stod(literal);
     printChar2(static_cast<int>(d));
-    std::cout << "int: " << static_cast<int>(d) << "\n";
+	if (d > static_cast<double>(INT_MAX) || d < static_cast<double>(INT_MIN)) //if float overlows int
+    	std::cout << "int: impossible" << "\n";
+	else // else cast to int
+		std::cout << "int: " << static_cast<int>(d) << "\n";
     if (static_cast<int>(d) - d == 0)
     {
         std::cout << "float: " << static_cast<float>(d) << ".0f\n";
