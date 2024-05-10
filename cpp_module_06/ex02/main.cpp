@@ -42,7 +42,7 @@ void	identify(Base &p)
 	}
 	try
 	{
-		B c = dynamic_cast<B&>(p);
+		B b = dynamic_cast<B&>(p);
 		std::cout << "reference is of class B" << std::endl;
 	}
 	catch (const std::exception& e)
