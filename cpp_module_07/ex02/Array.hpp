@@ -14,9 +14,9 @@ class Array
 		Array(unsigned int n);
 		Array(const Array& other);
 		~Array();
-		Array&	operator=(const Array& other);
-		T&		operator[](unsigned int i);
-		void	size(void);
+		Array&			operator=(const Array& other);
+		T&				operator[](unsigned int i);
+		unsigned int	size(void) const;
 };
 
 # include "Array.tpp"

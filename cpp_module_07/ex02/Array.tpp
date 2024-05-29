@@ -10,7 +10,7 @@ Array<T>::Array(unsigned int n) : _arr(new T[n]), _n(n) {std::cout << "array con
 template <typename T>
 Array<T>::Array(const Array<T>& other)
 {
-	this->_n = other._n;
+	this->_n = other.size();
 	this->_arr = new T[this->_n];
 	for (unsigned int i = 0; i != this->_n; i++)
 		this->_arr[i] = other._arr[i];
@@ -30,9 +30,9 @@ Array<T>&	Array<T>::operator=(const Array<T>& other)
 	if (this != &other)
 	{
 		delete[] this->_arr;
-		this->_n = other._n;
+		this->_n = other.size();
 		this->_arr = new T[this->_n];
-		for (int i = 0; i != this->_n; i++)
+		for (unsigned int i = 0; i != this->_n; i++)
 			this->_arr[i] = other._arr[i];
 	}
 	return *this;
@@ -47,7 +47,7 @@ T&	Array<T>::operator[](unsigned int i)
 }
 
 template <typename T>
-void Array<T>::size(void)
+unsigned int Array<T>::size(void) const
 {
 	return _n;
 }
