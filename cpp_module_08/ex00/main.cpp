@@ -6,5 +6,13 @@ int	main(void)
 {
 	std::vector<int> vec1 = {1, 2, 3, 4};
 
-	std::cout << ::easyfind(vec1, 3) << std::endl;
+	try
+	{
+		std::cout << ::easyfind(vec1, 3) << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	
 }
