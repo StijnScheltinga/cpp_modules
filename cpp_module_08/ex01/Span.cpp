@@ -53,3 +53,9 @@ int	Span::longestSpan(void)
 	std::vector<int>::iterator	min = std::min_element(vec.begin(), vec.end());
 	return (*max - *min);
 }
+
+void	Span::printSpan()
+{
+	for (std::vector<int>::iterator it = vec.begin(); it != vec.end(); it++)
+		std::cout << *it << '\n';
+}
