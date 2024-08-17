@@ -6,7 +6,7 @@
 # include <iterator>
 
 template <typename T>
-class MutantStack : public std::stack<T, std::deque<T>>
+class MutantStack : public std::stack<T, std::deque<T> >
 {
 	public:
 		MutantStack() {};

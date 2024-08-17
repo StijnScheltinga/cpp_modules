@@ -1,7 +1,7 @@
 SOURCES     := main.cpp
 BUILD		:= build
 OBJECTS     := $(addprefix $(BUILD)/, $(SOURCES:.cpp=.o))
-NAME        := template
+NAME        := MutantStack
 
 all: $(NAME)
 
