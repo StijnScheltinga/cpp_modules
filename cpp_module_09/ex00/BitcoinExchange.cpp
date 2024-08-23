@@ -27,9 +27,9 @@ void	BitcoinExchange::parseDatabase()
 		if (date == "date")
 			continue;
 		exchangeRate = line.substr(line.find_first_of(",") + 1, std::string::npos);
-		btcPrices[date] = stod(exchangeRate);
-		// printDatabase();
+		btcPrices[date] = stof(exchangeRate);
 	}
+	printDatabase();
 	parseInput();
 }
 
@@ -45,10 +45,15 @@ void	BitcoinExchange::parseInput()
 		middlePos = line.find_first_of("|");
 		if (middlePos == std::string::npos)
 		{
-			std::cout << "middle is not found" << "\n";
+			std::cout << "middle is not found! => " << line << '\n';
 			continue;
 		}
-		//need to implement check to know if it is possible to substr date and value
+		else if (line.size() < 3)
+		{
+			std::cout << "line is not properly formatted! => " << line << '\n';
+			continue;
+		}
+
 		date = line.substr(0, middlePos - 1);
 		if (date == "date")
 			continue;
@@ -62,37 +67,24 @@ void	BitcoinExchange::parseInput()
 		catch(const std::exception& e)
 		{
 			std::cerr << e.what() << line << '\n';
+			continue;
 		}
-			
-		std::cout << "date: " << date << ", value: " << value << '\n';
-
+		// calculatePrice(date);
 	}
 }
 
-void	BitcoinExchange::valueCheck(std::string value)
+void	BitcoinExchange::valueCheck(std::string valueStr)
 {
-	if (value.find_first_of(".") != std::string::npos)
+	try
 	{
-		try
-		{
-			stof(value);
-		}
-		catch(const std::exception& e)
-		{
-			throw ValueFormatException();
-		}
+		valueFloat = stof(valueStr);
 	}
-	else
+	catch(const std::exception& e)
 	{
-		try
-		{
-			stoi(value);
-		}
-		catch(const std::exception& e)
-		{
-			throw ValueFormatException();
-		}
+		throw ValueFormatException();
 	}
+	if (valueFloat < 0 || valueFloat > 1000)
+		throw ValueOutOfRangeException();
 
 }
 
@@ -107,6 +99,12 @@ void	BitcoinExchange::dateCheck(std::string date)
 		if (!isdigit(date[i]))
 			throw BitcoinExchange::DateFormatException();
 	}
+}
+
+void	BitcoinExchange::calculatePrice(std::string date)
+{
+	// btcPrices.upper_bound()
+	std::cout << date << " => " << valueFloat << " = " << '\n';
 }
 
 void	BitcoinExchange::printDatabase()

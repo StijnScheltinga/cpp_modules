@@ -10,12 +10,15 @@ class BitcoinExchange
 		std::ifstream	input;
 		std::ifstream	database;
 
-		std::map<std::string, double>	btcPrices;
+		std::map<std::string, float>	btcPrices;
+
+		float			valueFloat;
 
 		void	parseDatabase();
 		void	parseInput();
 		void	dateCheck(std::string date);
-		void	valueCheck(std::string value);
+		void	valueCheck(std::string valueStr);
+		void	calculatePrice(std::string date);
 		void	printDatabase();
 
 		class DateFormatException : public std::exception
@@ -31,6 +34,14 @@ class BitcoinExchange
 			public:
 				const char* what() const noexcept {
 					return "Incorrect value format! => ";
+				}
+		};
+
+		class ValueOutOfRangeException : public std::exception
+		{
+			public:
+				const char* what() const noexcept {
+					return "Value out of range! => ";
 				}
 		};
 	public:
