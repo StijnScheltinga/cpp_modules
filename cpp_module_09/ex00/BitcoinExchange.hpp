@@ -13,6 +13,7 @@ class BitcoinExchange
 		std::map<std::string, double>	btcPrices;
 
 		void	parseDatabase();
+		void	printDatabase();
 	public:
 		BitcoinExchange(const std::string& iFile, const std::string& dbFile);
 		~BitcoinExchange();
