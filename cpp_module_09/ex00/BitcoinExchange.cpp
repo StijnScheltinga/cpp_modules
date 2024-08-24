@@ -29,7 +29,7 @@ void	BitcoinExchange::parseDatabase()
 		exchangeRate = line.substr(line.find_first_of(",") + 1, std::string::npos);
 		btcPrices[date] = stof(exchangeRate);
 	}
-	printDatabase();
+	// printDatabase();
 	parseInput();
 }
 
@@ -63,13 +63,12 @@ void	BitcoinExchange::parseInput()
 		{
 			dateCheck(date);
 			valueCheck(value);
+			calculatePrice(date);
 		}
 		catch(const std::exception& e)
 		{
 			std::cerr << e.what() << line << '\n';
-			continue;
 		}
-		// calculatePrice(date);
 	}
 }
 
@@ -103,8 +102,18 @@ void	BitcoinExchange::dateCheck(std::string date)
 
 void	BitcoinExchange::calculatePrice(std::string date)
 {
-	// btcPrices.upper_bound()
-	std::cout << date << " => " << valueFloat << " = " << '\n';
+	std::map<std::string, float>::iterator	it;
+	it = btcPrices.find(date);
+	if (it == btcPrices.end())
+	{
+		it = btcPrices.lower_bound(date);
+		if (it == btcPrices.begin())
+			throw DateTooEarlyException();
+		it--;
+	}
+	// std::cout << "input date: " << date << ", value: " << valueFloat << ", db date: " << (*it).first << ", db value: " << (*it).second << ", result: " << valueFloat * (*it).second << '\n';
+	// std::cout << date << " => " << valueFloat << " * " << (*it).second << " = " << '\n';
+	std::cout << date << " => " << valueFloat <<  " = " << valueFloat * (*it).second << '\n';
 }
 
 void	BitcoinExchange::printDatabase()

@@ -44,6 +44,14 @@ class BitcoinExchange
 					return "Value out of range! => ";
 				}
 		};
+
+		class DateTooEarlyException : public std::exception
+		{
+			public:
+				const char* what() const noexcept {
+					return "Date too early! must be higher or equal to 2009-01-02 => ";
+				}
+		};
 	public:
 		BitcoinExchange(const std::string& iFile, const std::string& dbFile);
 		~BitcoinExchange();
