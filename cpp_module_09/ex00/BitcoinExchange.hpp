@@ -20,6 +20,7 @@ class BitcoinExchange
 		void	valueCheck(std::string valueStr);
 		void	calculatePrice(std::string date);
 		void	printDatabase();
+		unsigned int		daysInMonth(unsigned int month, unsigned int year);
 
 		class DateFormatException : public std::exception
 		{

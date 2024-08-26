@@ -29,7 +29,6 @@ void	BitcoinExchange::parseDatabase()
 		exchangeRate = line.substr(line.find_first_of(",") + 1, std::string::npos);
 		btcPrices[date] = stof(exchangeRate);
 	}
-	// printDatabase();
 	parseInput();
 }
 
@@ -91,13 +90,44 @@ void	BitcoinExchange::dateCheck(std::string date)
 {
 	if (date.size() != 10 || date[4] != '-' || date[7] != '-')
 		throw BitcoinExchange::DateFormatException();
+	//check if all dates are digits
 	for (std::size_t i = 0; i != date.size(); i++)
 	{
 		if (i == 4 || i == 7)
 			continue;
-		if (!isdigit(date[i]))
+		if (!std::isdigit(date[i]))
 			throw BitcoinExchange::DateFormatException();
 	}
+	unsigned int	day = std::atoi((date.substr(8, 2)).c_str());
+	unsigned int	month = std::atoi((date.substr(5, 2)).c_str());
+	unsigned int	year = std::atoi((date.substr(0, 4)).c_str());
+
+	if (month < 1 || month > 12 || year < 1)
+		throw BitcoinExchange::DateFormatException();
+	if (day < 1 || day > daysInMonth(month, year))
+		throw BitcoinExchange::DateFormatException();
+}
+
+unsigned int	BitcoinExchange::daysInMonth(unsigned int month, unsigned int year)
+{
+	bool	isLeapYear = false;
+	if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0)
+		isLeapYear = true;
+	unsigned int months31days[] = {1, 3, 5, 7, 8, 10, 12};
+	unsigned int months30days[] = {4, 6, 9, 11};
+
+	for (int i = 0; i < 7; i++)
+		if (month == months31days[i])
+			return 31;
+	
+	for (int i = 0; i < 4; i++)
+		if (month == months30days[i])
+			return 30;
+	
+	if (month == 2)
+		return (isLeapYear) ? 29 : 28;
+	
+	return 0;
 }
 
 void	BitcoinExchange::calculatePrice(std::string date)
@@ -111,8 +141,7 @@ void	BitcoinExchange::calculatePrice(std::string date)
 			throw DateTooEarlyException();
 		it--;
 	}
-	// std::cout << "input date: " << date << ", value: " << valueFloat << ", db date: " << (*it).first << ", db value: " << (*it).second << ", result: " << valueFloat * (*it).second << '\n';
-	// std::cout << date << " => " << valueFloat << " * " << (*it).second << " = " << '\n';
+
 	std::cout << date << " => " << valueFloat <<  " = " << valueFloat * (*it).second << '\n';
 }
 
