@@ -12,13 +12,9 @@ void	printContainer(const T& container)
 }
 
 //assumes vec is at least 2 big
-std::vector<int>	fordJohnson(std::vector<int>& vec)
+std::vector<int>	fordJohnson(std::vector<int> vec)
 {
 	std::vector<std::pair<int, int>>	pairs;
-	int									leftOver;
-
-	if (vec.size() % 2 != 0)
-		leftOver = vec.back();
 
 	for (size_t i = 0; i < vec.size(); i += 2)
 	{
@@ -37,6 +33,10 @@ std::vector<int>	fordJohnson(std::vector<int>& vec)
 		pend.push_back(pairs[i].second);
 	}
 
+	if (vec.size() % 2 != 0)
+		int leftOver = vec.back();
+	
+	return 
 	
 }
 
