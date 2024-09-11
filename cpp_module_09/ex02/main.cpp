@@ -1,7 +1,8 @@
-//creating a ford johnson sort algorithm first
-#include <vector>
 #include <iostream>
-#include <utility>
+#include <vector>
+#include <string>
+#include <limits>
+#include <algorithm>
 
 template <typename T>
 void	printContainer(const T& container)
@@ -11,41 +12,67 @@ void	printContainer(const T& container)
 	std::cout << '\n';
 }
 
-//assumes vec is at least 2 big
-std::vector<int>	fordJohnson(std::vector<int> vec)
+int	parseInput(std::vector<unsigned int>& input, int argc, char **argv)
 {
-	std::vector<std::pair<int, int>>	pairs;
-
-	for (size_t i = 0; i < vec.size(); i += 2)
+	if (argc < 2)
 	{
-		if (vec[i] > vec[i + 1])
-			pairs.emplace_back(vec[i + 1], vec[i]);
+		std::cout << "No input given" << std::endl;
+		return 1;
+	}
+	if (argc > 100001)
+	{
+		std::cout << "PmergeMe can take a maximum of 100000 arguments" << std::endl;
+		return 1;
+	}
+
+	unsigned long val;
+	for (int i = 1; i != argc; i++)
+	{
+		if (argv[i][0] == '-')
+		{
+			std::cout << "Negative numbers are not allowed" << std::endl;
+			return 1;
+		}
+
+		try
+		{
+			val = std::stoul(argv[i], nullptr, 10);
+		}
+		catch(const std::invalid_argument& e)
+		{
+			std::cout << "Invalid argument" << '\n';
+			return 1;
+		}
+		catch(const std::out_of_range& e)
+		{
+			std::cout << "Argument out of range" << '\n';
+			return 1;
+		}
+
+		if (val > (unsigned long)std::numeric_limits<unsigned int>::max())
+		{
+			std::cout << "Argument out of range" << '\n';
+			return 1;
+		}
+		
+		if (std::find(input.begin(), input.end(), val) == input.end())
+			input.push_back((unsigned int)val);
 		else
-			pairs.emplace_back(vec[i], vec[i + 1]);
+		{
+			std::cout << "No Duplicates are allowed" << '\n';
+			return 1;
+		}
 	}
-	
-	std::vector<int>	main;
-	std::vector<int>	pend;
-
-	for (size_t i = 0; i != pairs.size(); i++)
-	{
-		main.push_back(pairs[i].first);
-		pend.push_back(pairs[i].second);
-	}
-
-	if (vec.size() % 2 != 0)
-		int leftOver = vec.back();
-	
-	return 
-	
+	// printContainer(input);
+	return 0;
 }
 
-int	main()
+int	main(int argc, char **argv)
 {
-	std::vector<int> vec = {1, 5, 2, 4, 10, 6, 8, 3, 7, 9, 11};
-	std::cout << "unsorted vector: ";
-	printContainer(vec);
-	fordJohnson(vec);
-	std::cout << "sorted vector: ";
-	printContainer(vec);
+	std::vector<unsigned int>	input;
+
+	if (parseInput(input, argc, argv))
+		return 1;
+	
+	
 }
