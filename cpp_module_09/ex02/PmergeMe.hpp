@@ -1,8 +1,11 @@
-#include <vector>
-#include <deque>
-#include <iostream>
-#include <utility>
-#include <algorithm>
+#ifndef PMERGEME_HPP
+# define PMERGEME_HPP
+
+# include <vector>
+# include <deque>
+# include <iostream>
+# include <utility>
+# include <algorithm>
 
 class PmergeMe
 {
@@ -57,3 +60,5 @@ class PmergeMe
 				std::deque<unsigned int>	mergeInsertionSort(std::deque<unsigned int> input);
 		};
 };
+
+#endif

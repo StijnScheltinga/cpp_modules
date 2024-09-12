@@ -16,6 +16,19 @@ BitcoinExchange::~BitcoinExchange()
 	database.close();
 };
 
+BitcoinExchange::BitcoinExchange(const BitcoinExchange& other)
+{
+	*this = other;	
+}
+
+BitcoinExchange&	BitcoinExchange::operator=(const BitcoinExchange& other)
+{
+	if (this == &other)
+		return *this;
+	this->btcPrices = other.btcPrices;
+	return *this;
+}
+
 void	BitcoinExchange::parseDatabase()
 {
 	std::string	line;

@@ -12,7 +12,7 @@ class BitcoinExchange
 
 		std::map<std::string, float>	btcPrices;
 
-		float			valueFloat;
+		float	valueFloat;
 
 		void	parseDatabase();
 		void	parseInput();
@@ -64,6 +64,8 @@ class BitcoinExchange
 	public:
 		BitcoinExchange(const std::string& iFile, const std::string& dbFile);
 		~BitcoinExchange();
+		BitcoinExchange(const BitcoinExchange& other);
+		BitcoinExchange&	operator=(const BitcoinExchange& other);
 };
 
 
