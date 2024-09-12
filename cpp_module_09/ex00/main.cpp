@@ -9,9 +9,9 @@ int	main(int argc, char **argv)
 		std::cout << "invalid argument" << std::endl;
 		return 1;
 	}
-	std::string ifile(argv[1]);
 	try
 	{
+		std::string ifile(argv[1]);
 		BitcoinExchange	exchange(ifile, "data.csv");
 	}
 	catch(const std::exception& e)

@@ -22,6 +22,14 @@ class BitcoinExchange
 		void	printDatabase();
 		unsigned int		daysInMonth(unsigned int month, unsigned int year);
 
+		class CouldNotOpenFileException : public std::exception
+		{
+			public:
+				const char* what() const noexcept {
+					return "Could not open file!";
+				}
+		};
+
 		class DateFormatException : public std::exception
 		{
 			public:

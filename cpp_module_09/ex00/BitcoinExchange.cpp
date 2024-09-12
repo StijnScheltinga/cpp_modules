@@ -6,7 +6,7 @@ BitcoinExchange::BitcoinExchange(const std::string& ifile, const std::string& db
 	input.open(ifile);
 	database.open(dbfile);
 	if (!input.is_open() || !database.is_open())
-		throw std::exception();
+		throw CouldNotOpenFileException();
 	parseDatabase();
 }
 
@@ -44,15 +44,14 @@ void	BitcoinExchange::parseInput()
 		middlePos = line.find_first_of("|");
 		if (middlePos == std::string::npos)
 		{
-			std::cout << "middle is not found! => " << line << '\n';
+			std::cout << "Bad input! => " << line << '\n';
 			continue;
 		}
-		else if (line.size() < 3)
+		else if (line.size() < 3 || line[middlePos - 1] != ' ' || line[middlePos + 1] != ' ')
 		{
 			std::cout << "line is not properly formatted! => " << line << '\n';
 			continue;
 		}
-
 		date = line.substr(0, middlePos - 1);
 		if (date == "date")
 			continue;
