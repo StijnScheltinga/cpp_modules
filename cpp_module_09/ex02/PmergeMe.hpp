@@ -1,6 +1,7 @@
 #include <vector>
 #include <iostream>
 #include <utility>
+#include <algorithm>
 
 const unsigned int jacobsthalGroupSize[] = {
 		2, 2, 6, 10, 22, 42, 86, 170, 342, 682, 1366,

@@ -14,6 +14,17 @@ void	printContainer(const T& container)
 	std::cout << '\n';
 }
 
+template <typename T>
+bool	isSorted(const T& container)
+{
+	for (auto it = container.begin(); it != container.end(); it++)
+	{
+		if (it + 1 != container.end() && *it > *(it + 1))
+			return false;
+	}
+	return true;
+}
+
 int	parseInput(std::vector<unsigned int>& input, int argc, char **argv)
 {
 	if (argc < 2)
@@ -68,6 +79,7 @@ int	parseInput(std::vector<unsigned int>& input, int argc, char **argv)
 	return 0;
 }
 
+
 int	main(int argc, char **argv)
 {
 	std::vector<unsigned int>	input;
@@ -78,4 +90,9 @@ int	main(int argc, char **argv)
 		return 1;
 	
 	output = vec.mergeInsertionSort(input);
+
+	if (isSorted(output))
+		std::cout << "sorted\n";
+	else
+		std::cout << "not sorted\n";
 }
