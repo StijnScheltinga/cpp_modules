@@ -83,26 +83,41 @@ int	parseInput(std::vector<unsigned int>& input, int argc, char **argv)
 
 int	main(int argc, char **argv)
 {
-	std::vector<unsigned int>	input;
+	std::vector<unsigned int>	inputVec;
 	std::vector<unsigned int>	outputVec;
-	std::vector<unsigned int>	outputDeque;
 	PmergeMe::Vec				vec;
 
-	if (parseInput(input, argc, argv))
+	if (parseInput(inputVec, argc, argv))
 		return 1;
 	
-	auto start = std::chrono::high_resolution_clock::now();
-	outputVec = vec.mergeInsertionSort(input);
-	auto end = std::chrono::high_resolution_clock::now();
+	auto startVec = std::chrono::high_resolution_clock::now();
+	outputVec = vec.mergeInsertionSort(inputVec);
+	auto endVec = std::chrono::high_resolution_clock::now();
 
-	auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();
-	auto durationMicro = duration / 1000;
-	auto durationNano = duration % 1000;
+	auto durationVec = std::chrono::duration_cast<std::chrono::nanoseconds>(endVec - startVec).count();
+	auto durationVecMicro = durationVec / 1000;
+	auto durationVecNano = durationVec % 1000;
+
+
+	std::deque<unsigned int>	inputDeque(inputVec.begin(), inputVec.end()); 
+	std::deque<unsigned int>	outputDeque;
+	PmergeMe::Deque				deque;
+
+	auto startDeque = std::chrono::high_resolution_clock::now();
+	outputDeque = deque.mergeInsertionSort(inputDeque);
+	auto endDeque = std::chrono::high_resolution_clock::now();
+
+	auto durationDeque = std::chrono::duration_cast<std::chrono::nanoseconds>(endDeque - startDeque).count();
+	auto durationDequeMicro = durationDeque / 1000;
+	auto durationDequeNano = durationDeque % 1000;
+
+	if (!isSorted(outputDeque) || !isSorted(outputVec))
+		return 1;
 
 	std::cout << "before: ";
-	printContainer(input);
+	printContainer(inputVec);
 	std::cout << "after: ";
 	printContainer(outputVec);
-	std::cout << "Time to process a range of " << input.size() << " elements with std::vector : " << durationMicro << '.' << durationNano << " us\n";
-
+	std::cout << "Time to process a range of " << inputVec.size() << " elements with std::vector : " << durationVecMicro << '.' << durationVecNano << " us\n";
+	std::cout << "Time to process a range of " << inputDeque.size() << " elements with std::deque : " << durationDequeMicro << '.' << durationDequeNano << " us\n";
 }
