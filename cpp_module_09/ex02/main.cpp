@@ -4,6 +4,8 @@
 #include <limits>
 #include <algorithm>
 
+#include "PmergeMe.hpp"
+
 template <typename T>
 void	printContainer(const T& container)
 {
@@ -63,16 +65,17 @@ int	parseInput(std::vector<unsigned int>& input, int argc, char **argv)
 			return 1;
 		}
 	}
-	// printContainer(input);
 	return 0;
 }
 
 int	main(int argc, char **argv)
 {
 	std::vector<unsigned int>	input;
+	std::vector<unsigned int>	output;
+	PmergeMe::Vec				vec;
 
 	if (parseInput(input, argc, argv))
 		return 1;
 	
-	
+	output = vec.mergeInsertionSort(input);
 }
