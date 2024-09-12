@@ -7,9 +7,7 @@ PmergeMe::Vec::~Vec() {};
 void	PmergeMe::Vec::printPairs()
 {
 	for (size_t i = 0; i != pairsVector.size(); i++)
-	{
 		std::cout << "pair " << i << ": " << pairsVector[i].first << ", " << pairsVector[i].second << '\n';
-	}
 }
 
 template <typename T>
@@ -27,20 +25,34 @@ std::vector<unsigned int>	PmergeMe::Vec::mergeInsertionSort(std::vector<unsigned
 
 	_input = input;
 	createPairs(input);
-	std::cout << "pairs:\n";
-	printPairs();
 	mergeSort(pairsVector, 0, pairsVector.size() - 1);
-	std::cout << "pairs sorted:\n";
-	printPairs();
 	insert();
-	
 	return main;
+}
+
+void	PmergeMe::Vec::generateJacobsthalGroupSize()
+{
+	jacobsthalGroupSize.push_back(2);
+	jacobsthalGroupSize.push_back(2);
+
+	unsigned int	groupSize = 0;
+	unsigned int	groupTotal = 4;
+
+	while (groupTotal < 200000)
+	{
+		auto it = jacobsthalGroupSize.end();
+		groupSize = *(it - 1) + 2 * *(it - 2);
+		jacobsthalGroupSize.push_back(groupSize);
+		groupTotal += groupSize;
+	}
 }
 
 void	PmergeMe::Vec::jacobsthalSequence(unsigned int pendN)
 {
 	size_t				n = 0;
 	size_t				groupIndex = 0;
+
+	generateJacobsthalGroupSize();
 
 	//if next group fits within the pending
 	while (n < pendN)
@@ -81,29 +93,19 @@ void	PmergeMe::Vec::insert()
 	
 	jacobsthalSequence(pend.size());
 
-	std::cout << "main: ";
-	printContainer(main);
-	std::cout << "pend: ";
-	printContainer(pend);
-	std::cout << "insertion order: ";
-	printContainer(insertionOrder);
-
 	unsigned int	val = 0;
 	unsigned int	itemsInserted = 1;
 	unsigned int	endPos = 0;
 	for (size_t i = 0; i < pend.size(); i++)
 	{
 		val = pend[insertionOrder[i] - 1];
-		std::cout << "value to insert: " << val << '\n';
+		// std::cout << "value to insert: " << val << '\n';
 		endPos = insertionOrder[i] + itemsInserted;
-		std::cout << "endpos: " << endPos << '\n';
+		// std::cout << "endpos: " << endPos << '\n';
 		auto placeToInsert = std::upper_bound(main.begin(), main.begin() + endPos, val);
 		main.insert(placeToInsert, val);
 		itemsInserted++;
 	}
-
-	std::cout << "sorted:\n";
-	printContainer(main);
 }
 
 void	PmergeMe::Vec::createPairs(std::vector<unsigned int>& input)

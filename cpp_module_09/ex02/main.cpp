@@ -3,6 +3,7 @@
 #include <string>
 #include <limits>
 #include <algorithm>
+#include <chrono>
 
 #include "PmergeMe.hpp"
 
@@ -83,16 +84,25 @@ int	parseInput(std::vector<unsigned int>& input, int argc, char **argv)
 int	main(int argc, char **argv)
 {
 	std::vector<unsigned int>	input;
-	std::vector<unsigned int>	output;
+	std::vector<unsigned int>	outputVec;
+	std::vector<unsigned int>	outputDeque;
 	PmergeMe::Vec				vec;
 
 	if (parseInput(input, argc, argv))
 		return 1;
 	
-	output = vec.mergeInsertionSort(input);
+	auto start = std::chrono::high_resolution_clock::now();
+	outputVec = vec.mergeInsertionSort(input);
+	auto end = std::chrono::high_resolution_clock::now();
 
-	if (isSorted(output))
-		std::cout << "sorted\n";
-	else
-		std::cout << "not sorted\n";
+	auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();
+	auto durationMicro = duration / 1000;
+	auto durationNano = duration % 1000;
+
+	std::cout << "before: ";
+	printContainer(input);
+	std::cout << "after: ";
+	printContainer(outputVec);
+	std::cout << "Time to process a range of " << input.size() << " elements with std::vector : " << durationMicro << '.' << durationNano << " us\n";
+
 }
