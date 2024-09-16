@@ -1,4 +1,4 @@
-SOURCES     := main.cpp
+SOURCES     := main.cpp RPN.cpp
 BUILD		:= build
 OBJECTS     := $(addprefix $(BUILD)/, $(SOURCES:.cpp=.o))
 NAME        := RPN
