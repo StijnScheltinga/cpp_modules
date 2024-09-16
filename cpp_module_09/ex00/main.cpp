@@ -13,6 +13,7 @@ int	main(int argc, char **argv)
 	{
 		std::string ifile(argv[1]);
 		BitcoinExchange	exchange(ifile, "data.csv");
+		exchange.calculateValues();
 	}
 	catch(const std::exception& e)
 	{

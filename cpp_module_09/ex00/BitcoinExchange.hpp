@@ -7,6 +7,9 @@
 class BitcoinExchange
 {
 	private:
+		std::string iFile;
+		std::string dbFile;
+
 		std::ifstream	input;
 		std::ifstream	database;
 
@@ -62,10 +65,11 @@ class BitcoinExchange
 				}
 		};
 	public:
-		BitcoinExchange(const std::string& iFile, const std::string& dbFile);
+		BitcoinExchange(const std::string& iFileIn, const std::string& dbFileIn);
 		~BitcoinExchange();
 		BitcoinExchange(const BitcoinExchange& other);
 		BitcoinExchange&	operator=(const BitcoinExchange& other);
+		void	calculateValues();
 };
 
 

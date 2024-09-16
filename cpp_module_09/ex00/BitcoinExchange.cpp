@@ -1,32 +1,38 @@
 #include "BitcoinExchange.hpp"
 #include <iostream>
 
-BitcoinExchange::BitcoinExchange(const std::string& ifile, const std::string& dbfile) 
-{
-	input.open(ifile);
-	database.open(dbfile);
-	if (!input.is_open() || !database.is_open())
-		throw CouldNotOpenFileException();
-	parseDatabase();
-}
+BitcoinExchange::BitcoinExchange(const std::string& iFileIn, const std::string& dbFileIn) : iFile(iFileIn), dbFile(dbFileIn) {};
 
 BitcoinExchange::~BitcoinExchange() 
 {
-	input.close();
-	database.close();
+	if (input.is_open())
+		input.close();
+	if (database.is_open())
+		database.close();
 };
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange& other)
 {
-	*this = other;	
+	*this = other;
 }
 
 BitcoinExchange&	BitcoinExchange::operator=(const BitcoinExchange& other)
 {
 	if (this == &other)
 		return *this;
+	this->dbFile = other.dbFile;
+	this->iFile = other.iFile;
 	this->btcPrices = other.btcPrices;
 	return *this;
+}
+
+void	BitcoinExchange::calculateValues()
+{
+	input.open(iFile);
+	database.open(dbFile);
+	if (!input.is_open() || !database.is_open())
+		throw CouldNotOpenFileException();
+	parseDatabase();
 }
 
 void	BitcoinExchange::parseDatabase()
