@@ -4,6 +4,25 @@ PmergeMe::Vec::Vec() {};
 
 PmergeMe::Vec::~Vec() {};
 
+PmergeMe::Vec::Vec(const Vec& other)
+{
+	*this = other;
+}
+
+PmergeMe::Vec&	PmergeMe::Vec::operator=(const Vec& other)
+{
+	if (this == &other)
+		return *this;
+	this->_input = other._input;
+	this->pairsVector = other.pairsVector;
+	this->main = other.main;
+	this->pend = other.pend;
+	this->insertionOrder = other.insertionOrder;
+	this->jacobsthalGroupSize = other.jacobsthalGroupSize;
+	this->leftOver = other.leftOver;
+	return *this;
+}
+
 void	PmergeMe::Vec::printPairs()
 {
 	for (size_t i = 0; i != pairsVector.size(); i++)
@@ -177,9 +196,28 @@ void	PmergeMe::Vec::mergeSort(std::vector<std::pair<unsigned int, unsigned int>>
 	merge(pairsVec, begin, mid, end);
 }
 
-PmergeMe::Deque::Deque() {} ;
+PmergeMe::Deque::Deque() {}
 
-PmergeMe::Deque::~Deque() {} ;
+PmergeMe::Deque::~Deque() {}
+
+PmergeMe::Deque::Deque(const Deque& other)
+{
+	*this = other;
+}
+
+PmergeMe::Deque&	PmergeMe::Deque::operator=(const Deque& other)
+{
+	if (this == &other)
+		return *this;
+	this->_input = other._input;
+	this->pairsDeque = other.pairsDeque;
+	this->main = other.main;
+	this->pend = other.pend;
+	this->insertionOrder = other.insertionOrder;
+	this->jacobsthalGroupSize = other.jacobsthalGroupSize;
+	this->leftOver = other.leftOver;
+	return *this;
+}
 
 std::deque<unsigned int>	PmergeMe::Deque::mergeInsertionSort(std::deque<unsigned int> input)
 {

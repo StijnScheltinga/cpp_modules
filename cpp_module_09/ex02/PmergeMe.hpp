@@ -18,7 +18,6 @@ class PmergeMe
 				std::vector<unsigned int>							main;
 				std::vector<unsigned int>							pend;
 				std::vector<unsigned int>							insertionOrder;
-				std::vector<unsigned int>							mainPos;
 				std::vector<unsigned int>							jacobsthalGroupSize;
 				bool												leftOver;
 
@@ -31,6 +30,8 @@ class PmergeMe
 				void	printPairs();
 			public:
 				Vec();
+				Vec(const Vec& other);
+				Vec&	operator=(const Vec& other);
 				~Vec();
 				std::vector<unsigned int>	mergeInsertionSort(std::vector<unsigned int> input);
 		};
@@ -43,7 +44,6 @@ class PmergeMe
 				std::deque<unsigned int>							main;
 				std::deque<unsigned int>							pend;
 				std::deque<unsigned int>							insertionOrder;
-				std::deque<unsigned int>							mainPos;
 				std::deque<unsigned int>							jacobsthalGroupSize;
 				bool												leftOver;
 
@@ -56,6 +56,8 @@ class PmergeMe
 				void	printPairs();
 			public:
 				Deque();
+				Deque(const Deque& other);
+				Deque&	operator=(const Deque& other);
 				~Deque();
 				std::deque<unsigned int>	mergeInsertionSort(std::deque<unsigned int> input);
 		};
